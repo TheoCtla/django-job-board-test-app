@@ -28,6 +28,11 @@ DEBUG = os.getenv('APP_DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
+# CSRF trusted origins (Django 4+ : POST forms over HTTPS need explicit origin trust)
+CSRF_TRUSTED_ORIGINS = [
+    f'https://{host}' for host in ALLOWED_HOSTS if host not in ('localhost', '127.0.0.1')
+]
+
 
 # Application definition
 
